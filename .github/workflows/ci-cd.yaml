@@ -31,17 +31,17 @@ jobs:
 
     - name: Build and Push Vote Image
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/voting-app-vote:latest ./vote
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/voting-app-vote:latest ./K8s/Vote
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/voting-app-vote:latest
 
     - name: Build and Push Result Image
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/voting-app-result:latest ./result
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/voting-app-result:latest ./K8s/Result
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/voting-app-result:latest
 
     - name: Build and Push Worker Image
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/voting-app-worker:latest ./worker
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/voting-app-worker:latest ./K8s/Worker
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/voting-app-worker:latest
 
   deploy:
