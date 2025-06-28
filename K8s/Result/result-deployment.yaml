@@ -18,5 +18,24 @@ spec:
         ports:
           - containerPort: 4000
         env:
+          - name: POSTGRES_HOST
+            value: "db"              # Use your Postgres service name here
+          - name: POSTGRES_PORT
+            value: "5432"
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: POSTGRES_PASSWORD
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: POSTGRES_DB
           - name: REDIS_HOST
-            value: "redis-service"
+            value: "redis-service"   

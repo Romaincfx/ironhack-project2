@@ -12,16 +12,22 @@ spec:
       labels:
         app: worker
     spec:
+      dnsPolicy: ClusterFirst
+      dnsConfig:
+        searches:
+          - default.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
       containers:
       - name: worker
-        image: romainconfavreux/worker-app:latest
+        image: pokfinner/worker
         env:
         - name: REDIS_HOST
           value: "redis-service"
         - name: REDIS_PORT
           value: "6379"
         - name: POSTGRES_HOST
-          value: "postgres-0.postgres"  # Use headless service DNS for StatefulSet
+          value: "postgres"  # Use headless service DNS for StatefulSet
         - name: POSTGRES_PORT
           value: "5432"
         - name: POSTGRES_DB
