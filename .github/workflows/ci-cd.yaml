@@ -64,9 +64,9 @@ jobs:
       run: |
         curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
         sudo mv /tmp/eksctl /usr/local/bin
-        
+
     - name: Update Kubeconfig
-      run: eksctl utils write-kubeconfig --cluster voting-app-cluster --region eu-west-3
+      run: eksctl utils write-kubeconfig --cluster romain-voting-app-cluster --region eu-west-3
 
     - name: Apply Kubernetes Manifests
       run: kubectl apply -f K8s/
